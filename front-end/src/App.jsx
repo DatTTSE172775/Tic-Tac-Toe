@@ -1,11 +1,10 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import React from "react";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import GameBoard from "./components/GameBoard";
 import GameStatus from "./components/GameStatus";
 import { useGameLogic } from "./hooks/useGameLogic";
 
 function App() {
-  const { board, updateSquare, isPlayerX, winner } = useGameLogic();
+  const { board, updateSquare, isPlayerX, winner, resetGame } = useGameLogic();
 
   return (
     <Flex
@@ -33,6 +32,16 @@ function App() {
           onSquareClick={winner ? () => {} : updateSquare}
         />
       </Box>
+      {/* Nút Reset */}
+      <Button
+        mt={6}
+        colorScheme="teal"
+        onClick={resetGame}
+        size="lg"
+        variant="solid"
+      >
+        Reset Game
+      </Button>
     </Flex>
   );
 }

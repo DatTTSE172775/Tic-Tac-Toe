@@ -32,5 +32,12 @@ export const useGameLogic = () => {
     setIsPlayerX(!isPlayerX);
   };
 
-  return { board, updateSquare, isPlayerX, winner };
+  // reset game
+  const resetGame = () => {
+    setBoard(generateBoard(10));
+    setIsPlayerX(true);
+    setWinner(null);
+  };
+
+  return { board, updateSquare, isPlayerX, winner, resetGame };
 };
