@@ -1,10 +1,11 @@
 import { Box, Flex, Heading } from "@chakra-ui/react";
 import React from "react";
 import GameBoard from "./components/GameBoard";
+import GameStatus from "./components/GameStatus";
 import { useGameLogic } from "./hooks/useGameLogic";
 
 function App() {
-  const { board, updateSquare } = useGameLogic();
+  const { board, updateSquare, isPlayerX } = useGameLogic();
 
   return (
     <Flex
@@ -19,7 +20,8 @@ function App() {
       <Heading mb={8} fontSize="3xl">
         Caro Game
       </Heading>
-      <Box>
+      <GameStatus isPlayerX={isPlayerX} /> {/* Hiển thị lượt chơi */}
+      <Box mt={6}>
         <GameBoard board={board} onSquareClick={updateSquare} />
       </Box>
     </Flex>
