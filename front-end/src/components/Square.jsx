@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import React from "react";
 
-const Square = ({ value, onClick }) => {
+const Square = React.memo(({ value, onClick }) => {
   return (
     <Button
       height="45px" // Cố định kích thước ô vuông
@@ -24,6 +24,6 @@ const Square = ({ value, onClick }) => {
       {value}
     </Button>
   );
-};
+});
 
 export default Square;

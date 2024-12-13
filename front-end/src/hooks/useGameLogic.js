@@ -1,24 +1,36 @@
 import { useState } from "react";
+import { checkWinner } from "../utils/checkWinner";
 import generateBoard from "../utils/generateBoard";
 
 export const useGameLogic = () => {
   const [board, setBoard] = useState(generateBoard(10)); // Tạo bảng 10x10
   const [isPlayerX, setIsPlayerX] = useState(true); // Quản lý lượt chơi: true = X, false = O
+  const [winner, setWinner] = useState(null); // Người chiến thắng
 
   const updateSquare = (row, col) => {
-    // Nếu ô đã có giá trị, không làm gì
-    if (board[row][col] !== "") return;
+    // Nếu đã có người thắng hoặc ô đã được điền, không làm gì
+    if (winner || board[row][col] !== "") return;
 
-    // Cập nhật giá trị X/O tùy theo lượt chơi
+    // Tạo một bản sao mới của bàn cờ
     const newBoard = board.map((r, rowIndex) =>
       r.map((cell, colIndex) =>
         rowIndex === row && colIndex === col ? (isPlayerX ? "X" : "O") : cell
       )
     );
 
-    setBoard(newBoard); // Cập nhật trạng thái bàn cờ
-    setIsPlayerX(!isPlayerX); // Đổi lượt chơi
+    // Cập nhật bàn cờ
+    setBoard(newBoard);
+
+    // Kiểm tra người thắng
+    const currentWinner = checkWinner(newBoard);
+    if (currentWinner) {
+      setWinner(currentWinner); // Cập nhật người thắng
+      return; // Dừng lại sau khi cập nhật người thắng
+    }
+
+    // Đổi lượt chơi nếu chưa có người thắng
+    setIsPlayerX(!isPlayerX);
   };
 
-  return { board, updateSquare, isPlayerX };
+  return { board, updateSquare, isPlayerX, winner };
 };
