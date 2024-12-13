@@ -4,7 +4,8 @@ import GameStatus from "./components/GameStatus";
 import { useGameLogic } from "./hooks/useGameLogic";
 
 function App() {
-  const { board, updateSquare, isPlayerX, winner, resetGame } = useGameLogic();
+  const { board, updateSquare, isPlayerX, winner, isDraw, resetGame } =
+    useGameLogic();
 
   return (
     <Flex
@@ -22,6 +23,10 @@ function App() {
       {winner ? (
         <Text fontSize="2xl" fontWeight="bold" color="green.400" mb={4}>
           Người thắng: {winner}
+        </Text>
+      ) : isDraw ? (
+        <Text fontSize="2xl" fontWeight="bold" color="green.400" mb={4}>
+          Kết quả: Hòa!
         </Text>
       ) : (
         <GameStatus isPlayerX={isPlayerX} />
