@@ -1,5 +1,5 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import React from "react";
+import PropTypes from "prop-types";
 import Square from "./Square";
 
 const GameBoard = ({ board, onSquareClick }) => {
@@ -21,6 +21,10 @@ const GameBoard = ({ board, onSquareClick }) => {
       )}
     </SimpleGrid>
   );
+};
+GameBoard.propTypes = {
+  board: PropTypes.arrayOf(PropTypes.array).isRequired,
+  onSquareClick: PropTypes.func.isRequired,
 };
 
 export default GameBoard;
