@@ -1,0 +1,37 @@
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); /* 10 cột với tỉ lệ 1fr */
+  grid-template-rows: repeat(10, 1fr); /* 10 hàng với tỉ lệ 1fr */
+  width: 500px; /* Chiều rộng cố định */
+  height: 500px; /* Chiều cao cố định, đảm bảo vuông */
+  margin: 20px auto; /* Căn giữa bàn cờ */
+  background-color: #2d2d2d;
+  border: 2px solid #333;
+}
+
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #333;
+  font-size: 1.5rem; /* Kích thước chữ */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.square.x {
+  background-color: #2196f3; /* Màu xanh cho X */
+  color: white;
+}
+
+.square.o {
+  background-color: #f44336; /* Màu đỏ cho O */
+  color: white;
+}
+
+.square:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}

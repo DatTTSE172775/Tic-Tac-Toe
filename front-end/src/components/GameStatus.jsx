@@ -1,21 +1,38 @@
-/* eslint-disable react/prop-types */
-import { Box, Text } from "@chakra-ui/react";
+import PropTypes from "prop-types";
+import "../styles/GameStatus.css";
 
-const GameStatus = ({ isPlayerX }) => {
+const GameStatus = ({ isPlayerX, winner, isDraw }) => {
   return (
-    <Box
-      bg="gray.700" // Màu nền của thanh trạng thái
-      color="white" // Màu chữ
-      py={2} // Padding theo chiều dọc
-      px={4} // Padding theo chiều ngang
-      borderRadius="md" // Bo góc thanh trạng thái
-      textAlign="center" // Căn giữa nội dung
+    <div
+      className={`game-status ${
+        winner
+          ? "is-winner"
+          : isDraw
+          ? "is-draw"
+          : isPlayerX
+          ? "is-player-x"
+          : "is-player-o"
+      }`}
     >
-      <Text fontSize="lg" fontWeight="bold">
-        {`Lượt chơi của ${isPlayerX ? "X" : "O"}`}
-      </Text>
-    </Box>
+      {winner ? (
+        <span className="winner-message">
+          🎉 Người thắng: <strong>{winner}</strong> 🎉
+        </span>
+      ) : isDraw ? (
+        <span className="draw-message">🤝 Trận đấu hòa! 🤝</span>
+      ) : (
+        <span>
+          Lượt chơi của <strong>{isPlayerX ? "X" : "O"}</strong>
+        </span>
+      )}
+    </div>
   );
+};
+
+GameStatus.propTypes = {
+  isPlayerX: PropTypes.bool.isRequired,
+  winner: PropTypes.string,
+  isDraw: PropTypes.bool.isRequired,
 };
 
 export default GameStatus;

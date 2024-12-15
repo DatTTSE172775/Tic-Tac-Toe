@@ -1,27 +1,24 @@
-import { SimpleGrid } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import Square from "./Square";
+import "../styles/GameBoard.css";
 
 const GameBoard = ({ board, onSquareClick }) => {
   return (
-    <SimpleGrid
-      columns={10} // 10 cột
-      spacing={0} // Không khoảng cách giữa các ô
-      width="fit-content" // Đảm bảo bàn cờ có kích thước vừa với nội dung
-      mx="auto" // Căn giữa bàn cờ theo chiều ngang
-    >
+    <div className="game-board">
       {board.map((row, rowIndex) =>
         row.map((value, colIndex) => (
-          <Square
+          <div
             key={`${rowIndex}-${colIndex}`}
-            value={value}
+            className={`square ${value ? value.toLowerCase() : ""}`}
             onClick={() => onSquareClick(rowIndex, colIndex)}
-          />
+          >
+            {value}
+          </div>
         ))
       )}
-    </SimpleGrid>
+    </div>
   );
 };
+
 GameBoard.propTypes = {
   board: PropTypes.arrayOf(PropTypes.array).isRequired,
   onSquareClick: PropTypes.func.isRequired,

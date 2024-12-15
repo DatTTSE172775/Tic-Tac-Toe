@@ -1,7 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import MainPage from "../src/pages/main/MainPage";
-import OfflinePage from "../src/pages/offline/OfflinePage";
-import RobotPage from "../src/pages/robot/RobotPage";
+import MainPage from "../pages/main/MainPage";
+import OfflinePage from "../pages/offline/OfflinePage";
+import RobotPage from "../pages/robot/RobotPage";
 
 const AppRoutes = () => {
   return (
